@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello NavbarController!
+{% endblock %}
+
+{% block body %}
+	<nav>
+		<ul>
+			<li>
+				<a href="{{path('app_home')}}">Accueil</a>
+			</li>
+			<li>
+				<a href="{{path('app_bonbon')}}">Bonbons</a>
+			</li>
+			{% if app.user %}
+				<li>
+					<a href="{{path('app_logout')}}">Se déconnecter</a>
+				</li>
+				{% if 'ROLE_ADMIN' in app.user.roles  %}
+					<li>
+						<a href="{{path('admin')}}">
+							Page administrateur
+						</a>
+					</li>
+				{% endif %}
+			{% else %}
+				<li>
+					<a href="{{path('app_register')}}">S'inscrire</a>
+				</li>
+				<li>
+					<a href="{{path('app_login')}}">Se connecter</a>
+				</li>
+			{% endif %}
+		</ul>
+	</nav>
+{% endblock %}
