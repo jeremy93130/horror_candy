@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PanierController!
+{% endblock %}
+
+{% block body %}
+	{{ include('navbar/index.html.twig' ) }}
+
+	<div class="div_panier_vide container">
+		{% if panier is empty %}
+			<h1>
+				Votre panier est vide
+			</h1>
+			<p>
+				<a href="{{path('app_bonbon')}}">
+					Voir la boutique
+				</a>
+			</p>
+		{% else %}
+			<div class="panier_div">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Produit</th>
+							<th scope="col">Poids</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Prix</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for article in panier %}
+							<tr>
+								<th scope="row">
+									<a href="" onclick="supprimerArticle(event,{{article.bonbon.id}})">
+										Supprimer
+									</a>
+								</th>
+								<td>{{article.bonbon.nom}}</td>
+								{% if article.bonbon.poids < 10%}
+									<td>
+										{{article.bonbon.poids}}Kg
+									</td>
+								{% else %}
+									<td>{{article.bonbon.poids}}g</td>
+								{% endif %}
+								<td>{{article.quantity}}</td>
+								<td>{{article.bonbon.prix * article.quantity}}€</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}

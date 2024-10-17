@@ -32,5 +32,8 @@
 				</li>
 			{% endif %}
 		</ul>
+		<ul>
+			<li><a href="{{path('app_panier')}}"><i class="fa-solid fa-cart-shopping"></i><span id="nombreArticles">{{app.session.get('nb')}}</span></a></li>
+		</ul>
 	</nav>
 {% endblock %}
