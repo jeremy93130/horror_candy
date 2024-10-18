@@ -66,14 +66,15 @@ class PanierController extends AbstractController
         $panierSession = $session->get('panier', []);
         $nombreArticles = $session->get('nb', []);
 
-        dump($data);
-        die();
         foreach ($panierSession as $key => &$panier) {
             if ($panier['bonbon']->getId() == $data['id']) {
                 unset($panierSession[$key]);
-                $nombreArticles--;
+                $nombreArticles -= $panier['quantity'];
+                break;
             }
         }
+
+        $panierSession = array_values($panierSession); // On réindexe le tableau pour éviter les clés vides
 
         $session->set('panier', $panierSession);
         $session->set('nb', $nombreArticles);

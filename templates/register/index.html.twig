@@ -3,17 +3,20 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-	<h1>
-		Formulaire d'inscription
-	</h1>
-	<div class="test">
-		{{ form_start(form)}}
-		{{form_row(form.lastName)}}
-		{{form_row(form.firstName)}}
-		{{form_row(form.email)}}
-		{{form_row(form.password)}}
-		{{form_row(form.submit)}}
+	<div class="container-height">
+	{{ include('navbar/index.html.twig') }}
+		<h1>
+			Formulaire d'inscription
+		</h1>
+		<div class="inscription-div">
+			{{ form_start(form)}}
+			{{form_row(form.lastName)}}
+			{{form_row(form.firstName)}}
+			{{form_row(form.email)}}
+			{{form_row(form.password)}}
+			{{form_row(form.submit)}}
 
-		{{form_end(form)}}
+			{{form_end(form)}}
+		</div>
 	</div>
 {% endblock %}

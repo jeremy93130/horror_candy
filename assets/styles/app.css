@@ -2,13 +2,39 @@ body {
     background-image: url('../images/fond/fond_body.png');
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow: inset 10px 10px 1000px black;
+    box-shadow: inset 0 0 1000px black;
     /* Fond noir */
     color: #f5f5f5;
     /* Texte clair pour le contraste */
     font-family: 'Creepster', cursive;
     /* Police thématique d'Halloween (si disponible) */
 }
+
+.loader {
+    border: 8px solid #f3f3f3;
+    /* Couleur de fond du cercle */
+    border-top: 8px solid #d35400;
+    /* Couleur du trait animé */
+    border-radius: 50%;
+    /* Cercle parfait */
+    width: 50px;
+    /* Largeur du cercle */
+    height: 50px;
+    /* Hauteur du cercle */
+    animation: spin 1s linear infinite;
+    /* Animation continue */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 
 h1 {
     color: #e74c3c;
@@ -17,9 +43,39 @@ h1 {
     /* Ombre pour un effet inquiétant */
 }
 
+
+/* Page inscription */
+
+.inscription-div {
+    min-height: 79vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Page connexion */
+
+#inscription-a {
+    animation: warningA 3s infinite;
+}
+
+@keyframes warningA {
+    0% {
+        color: rgb(95, 27, 95);
+    }
+
+    50% {
+        color: white;
+    }
+
+    100% {
+        color: #d35400;
+    }
+}
+
 /* PAge accueil */
 
-.container {
+.container-height {
     min-height: 87vh;
 }
 
@@ -34,27 +90,29 @@ h1 {
     animation: neonEffect 3s infinite alternate;
 }
 
-#div_accueil > a {
+#div_accueil>a {
     font-size: 30px;
     text-shadow: 3px 4px #000000;
 }
 
-#div_accueil > div {
+#div_accueil>div {
     width: 250px;
 }
 
-#div_accueil > div > img {
+#div_accueil>div>img {
     width: 100%;
-    box-shadow: inset  10px 10px 1500px black;
+    box-shadow: inset 10px 10px 1500px black;
 }
 
 @keyframes neonEffect {
     0% {
-        color: #e74c3c;
+        color: #d35400;
     }
+
     50% {
         color: rgb(224, 206, 10);
     }
+
     100% {
         color: #e74c3c;
     }
@@ -88,12 +146,12 @@ h1 {
     /* Effet d'ombre violette au survol */
 }
 
-.card > div {
+.card>div {
     height: 100%;
 }
 
-.card > div > div > img {
-    height : 100%
+.card>div>div>img {
+    height: 100%
 }
 
 .card-title {
@@ -170,7 +228,7 @@ nav ul li:hover {
 /* Partie panier */
 .div_panier_vide {
     display: flex;
-    flex-direction: column;     
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -179,4 +237,66 @@ nav ul li:hover {
     font-size: 33px;
     color: white;
     text-decoration: underline;
+}
+
+.panier-titre {
+    color: #e74c3c;
+    /* Rouge effrayant pour le titre */
+    text-shadow: 2px 2px 5px #000000;
+    /* Ombre pour un effet inquiétant */
+}
+
+/* Page panier */
+
+.div_panier_vide {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.table {
+    width: 100%;
+    color: #ffffff;
+    border-collapse: collapse;
+}
+
+.table-th,
+.table-td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #555;
+    /* Bordure pour les lignes */
+}
+
+.table-th {
+    background-color: #4e4e4e;
+}
+
+.table-tr:nth-child(even) {
+    background-color: #555;
+}
+
+.panier-lien {
+    color: #d35400;
+    /* Lien en orange pour un effet citrouille */
+    text-decoration: none;
+}
+
+.panier-lien:hover {
+    color: #f39c12;
+    /* Changement de couleur au survol */
+    text-decoration: underline;
+    /* Surlignage au survol */
+}
+
+.div_panier_vide p a {
+    font-size: 33px;
+    color: white;
+    text-decoration: underline;
+}
+
+.table th,
+.table td {
+    background-color: #0000006a;
+    color: white;
 }
