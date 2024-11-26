@@ -28,7 +28,7 @@ class PanierController extends AbstractController
     public function addPanier(Request $request, Session $session, BonbonRepository $bonbonRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        $bonbon = $bonbonRepository->find($data['id']);
+        $bonbon = $bonbonRepository->find($data);
         $panierSession = $session->get('panier', []);
         $nombreArticles = $session->get('nb', 0);
         $bonbonFound = false;
@@ -67,7 +67,7 @@ class PanierController extends AbstractController
         $nombreArticles = $session->get('nb', []);
 
         foreach ($panierSession as $key => &$panier) {
-            if ($panier['bonbon']->getId() == $data['id']) {
+            if ($panier['bonbon']->getId() == $data) {
                 unset($panierSession[$key]);
                 $nombreArticles -= $panier['quantity'];
                 break;
@@ -77,7 +77,8 @@ class PanierController extends AbstractController
         $panierSession = array_values($panierSession); // On réindexe le tableau pour éviter les clés vides
 
         $session->set('panier', $panierSession);
-        $session->set('nb', $nombreArticles);
+
+        $session->get('nb') !== 0 ? $session->set('nb', $nombreArticles) : 0;
 
         return new JsonResponse(['nombreArticles' => $nombreArticles]);
     }
