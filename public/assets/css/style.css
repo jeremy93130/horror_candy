@@ -120,6 +120,19 @@ h1 {
 }
 
 
+#searchBar-div {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+#searchBar {
+    border-radius: 10px;
+    text-align: center;
+    background-color: #d35400;
+
+}
+
 .bonbons_liste {
     display: flex;
     justify-content: center;
