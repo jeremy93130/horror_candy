@@ -6,39 +6,33 @@
 {% block body %}
 	{{ include('navbar/index.html.twig') }}
 	<div class="container-height">
-		<h1 class="text-white text-center mb-4">
+		<h1 class="text-center mb-4">
 			Liste des bonbons disponibles à la vente
 		</h1>
 		<div id="searchBar-div">
 			<input type="text" id="searchBar" placeholder="Recherche de produits">
 		</div>
 		<div class="bonbons_liste">
+
 			{% for bonbon in bonbons %}
-				<div class="card mb-3 searchCards" data-nom={{bonbon.nom}}>
-					<div class="row g-0">
-						<div class="col-md-5">
-							<img src="{{ asset('assets/images/' ~ bonbon.image) }}" class="img-fluid rounded-start" alt="{{bonbon.nom}}">
-						</div>
-						<div class="col-md-7">
-							<div class="card-body d-flex flex-column justify-content-between h-100">
-								<h5 class="card-title">{{bonbon.nom}}</h5>
-								<p>
-									Prix:
-									{{bonbon.prix}}€
-								</p>
-								<div>
-									<p class="card-text">
-										<a href="{{path('app_detail', {id: bonbon.id})}}">Plus de détails ...</a>
-									</p>
-									<a href="" title='Ajouter ce produit au panier' onclick="addPanier(event,{{bonbon.id}});">
-										<i class="fa-solid fa-cart-arrow-down"></i>
-									</a>
-								</div>
-							</div>
-						</div>
+				<div class="div_img_produit">
+					<a href="{{path('app_detail', {id: bonbon.id})}}"><img src="{{asset('assets/images/' ~ bonbon.image)}}" class="link_produits"></a>
+					<div class="div-produits-text">
+						<h2>
+							{{bonbon.nom}}
+						</h2>
+					</div>
+					<div class="addCart">
+						<p>
+							Cliquez sur l'image pour plus de détails
+						</p>
+						<i class="fa-solid fa-cart-plus addPanier" onclick="addPanier(event,{{bonbon.id}})"></i>
 					</div>
 				</div>
+
 			{% endfor %}
 		</div>
+
+
 	</div>
 {% endblock %}
