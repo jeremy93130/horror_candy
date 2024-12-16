@@ -28,6 +28,9 @@ class PanierController extends AbstractController
     public function addPanier(Request $request, Session $session, BonbonRepository $bonbonRepository): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
+        // {"id" : 2}
+        // [ "id" => 2]
+        // 2
         $bonbon = $bonbonRepository->find($data);
         $panierSession = $session->get('panier', []);
         $nombreArticles = $session->get('nb', 0);
@@ -37,9 +40,9 @@ class PanierController extends AbstractController
             // Accéder correctement à l'objet Bonbon stocké dans le panier
             if ($bonbon->getId() == $panier['bonbon']->getId()) {
                 // Si le bonbon est déjà dans le panier, on incrémente la quantité
-                $panier['quantity']++; // Incrémenter la quantité
-                $bonbonFound = true; // Indiquer que le bonbon a été trouvé
-                break; // Sortir de la boucle
+                $panier['quantity']++; 
+                $bonbonFound = true; 
+                break; 
             }
         }
 

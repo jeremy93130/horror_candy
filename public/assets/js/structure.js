@@ -4,7 +4,10 @@ function addPanier(event, id) {
 
     fetch('/addPanier', {
         method: 'post',
-        body: id
+        headers : {
+            // 'Content-Type' : 'application/json'
+        },
+        body: id // {id : id} / {"id" : id}
     })
         .then(function (result) {
             return result.json();
@@ -20,7 +23,10 @@ function supprimerArticle(event, id) {
 
     fetch('/supp', {
         method: 'post',
-        body: id
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: id })
     })
         .then(function (result) {
             return result.json();
@@ -41,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var searchBar = document.querySelector('#searchBar');
 
     searchBar.addEventListener('input', function (event) {
-        var produits = document.querySelectorAll('.searchCards');
+        var produits = document.querySelectorAll('.div_img_produit');
         produits.forEach(produit => {
             let nom = produit.getAttribute('data-nom').toLowerCase();
             if (!nom.includes(event.target.value)) {
@@ -52,6 +58,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             } else {
                 produit.style.display = 'block';
+            }
+        });
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    let images = document.querySelectorAll('.image-bonbon');
+
+    images.forEach(function (image) {
+        image.addEventListener('mouseenter', function () {
+            if (!this.querySelector('.addCart')) {
+                let id = this.getAttribute('data-id');
+                let panier = document.createElement('div');
+                panier.className = 'addCart';
+                panier.innerHTML = `<div><i class="fa-solid fa-cart-plus addPanier" onclick="addPanier(event, ${id})"></i></div>`;
+                this.appendChild(panier);
+            }
+        });
+
+        image.addEventListener('mouseleave', function () {
+            let panier = this.querySelector('.addCart');
+            if (panier) {
+                panier.remove();
             }
         });
     });

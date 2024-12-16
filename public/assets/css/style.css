@@ -92,33 +92,79 @@ nav {
 
 }
 
+.div_img_produit a {
+    text-decoration: none;
+    color: #e91e63;
+    text-shadow: 2px 2px black;
+}
+
+.div_img_produit a:hover {
+    color: black;
+    text-shadow: 2px 2px #e91e63;
+    scale: 1.5;
+    transition: 3s;
+}
+
+.image-bonbon {
+    position: relative; /* Nécessaire pour positionner les enfants */
+    overflow: hidden;
+}
+
+.image-bonbon::before {
+    content: ""; /* Nécessaire pour afficher le pseudo-élément */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit; /* Copie l'image de fond de l'élément parent */
+    background-size: cover;
+    background-position: center;
+    filter: blur(0); /* Pas de flou par défaut */
+    transition: filter 0.3s ease; /* Transition douce */
+    z-index: 1; /* Place derrière les autres éléments */
+    pointer-events: none; /* Évite d'intercepter les clics et survols */
+}
+
+.image-bonbon:hover::before {
+    filter: blur(5px); /* Applique un flou léger lors du survol */
+}
+
+.image-bonbon h2,
+.image-bonbon .addCart {
+    position: relative; /* Place au-dessus du pseudo-élément */
+    z-index: 2; /* Garantit que le texte et le panier restent visibles */
+    pointer-events: auto; /* Assure les interactions avec ces éléments */
+}
+
+
+
 .bonbons_liste {
     display: flex;
     justify-content: space-between;
     min-height: 100vh;
+    padding: 0 20px;
     background-color: rgba(0, 0, 0, 0.452);
 }
 
-.div_img_produit{
-    position: relative;
-    width: 400px; 
+.image-bonbon {
+    width: 400px;
     height: 500px;
-    margin-top: 20px;
-    img {
-        width: 100%;
-        height: 100%;
-        border-radius: 60px;
-    }
+    background-size: cover;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 5px solid black;
 }
 
-.div-produits-text{
-    position: absolute;
-    top: 50%;
-    left: 70px;
+.image-bonbon:nth-child(odd) {
+    margin-top: 70px;
 }
 
-.div_img_produit:nth-child(odd){
-    margin-top: 200px;
+.image-bonbon i {
+    font-size: 70px;
 }
 
 .link_produits:hover {

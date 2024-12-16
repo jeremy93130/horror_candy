@@ -13,23 +13,16 @@
 			<input type="text" id="searchBar" placeholder="Recherche de produits">
 		</div>
 		<div class="bonbons_liste">
-
 			{% for bonbon in bonbons %}
-				<div class="div_img_produit">
-					<a href="{{path('app_detail', {id: bonbon.id})}}"><img src="{{asset('assets/images/' ~ bonbon.image)}}" class="link_produits"></a>
-					<div class="div-produits-text">
-						<h2>
-							{{bonbon.nom}}
-						</h2>
-					</div>
-					<div class="addCart">
-						<p>
-							Cliquez sur l'image pour plus de détails
-						</p>
-						<i class="fa-solid fa-cart-plus addPanier" onclick="addPanier(event,{{bonbon.id}})"></i>
-					</div>
+				<div class="div_img_produit" data-nom="{{bonbon.nom}}">
+					<a href="{{path('app_detail', {id: bonbon.id})}}">
+						<div class="image-bonbon" data-id="{{bonbon.id}}" style="background-image: url({{asset('assets/images/' ~ bonbon.image)}});">
+							<h2>
+								{{bonbon.nom}}
+							</h2>
+						</div>
+					</a>
 				</div>
-
 			{% endfor %}
 		</div>
 
